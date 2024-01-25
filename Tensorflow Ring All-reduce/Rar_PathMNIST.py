@@ -9,7 +9,7 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.DEBUG)
 
 os.environ['TF_CONFIG'] = json.dumps({
     'cluster': {
-        'worker': ["cloud98:23456", "cloud99:23456", 'cloud103:23456', "cloud104:23456"]
+        'worker': ["Hostname:port", "Hostname:port", 'Hostname:port', "Hostname:port"]
     },
     'task': {'type': 'worker', 'index': int(sys.argv[1])}
 })
