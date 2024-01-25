@@ -8,9 +8,9 @@ from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 
 os.environ["TF_CONFIG"] = json.dumps({
     "cluster": {
-        "worker": ["cloud104:8053", "cloud98:8050"],
-        "ps": ["cloud103:8053"],
-        "chief": ["cloud99:8050"]
+        "worker": ["Host:Port","Host:Port"],
+        "ps": ["Host:Port"],
+        "chief": ["Host:Port"]
     },
     "task": {"type": "ps", "index": 0}
 })
