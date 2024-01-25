@@ -8,12 +8,12 @@ import sys
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.DEBUG)
 
-os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["cloud98:23456","cloud99:23456", 'cloud103:23456', "cloud104:23456"]},
+os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["Hostname:port","Hostname:port", 'Hostname:port', "Hostname:port"]},
  'task': {'type': 'worker', 'index': int(sys.argv[1])}})
 
 strategy = tf.distribute.MultiWorkerMirroredStrategy(cluster_resolver=tf.distribute.cluster_resolver.TFConfigClusterResolver())
 num_workers = 4
-
+batch_size=128
 
 def load_data(file_path):
     data = np.load(file_path)
@@ -93,5 +93,5 @@ def build_and_compile_cnn_model():
     return model
 with strategy.scope():
     multi_worker_model = build_and_compile_cnn_model()
-multi_worker_model.fit(dataset, epochs=20, steps_per_epoch=100,verbose=1)
+multi_worker_model.fit(dataset, epochs=10, steps_per_epoch=(len(dataset)//batch_size),verbose=1)
 print('Training completed.')
