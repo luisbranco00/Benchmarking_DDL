@@ -8,7 +8,7 @@ import sys
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.DEBUG)
 
-os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["cloud98:8050","cloud99:8052",'cloud103:8000',"cloud104:8000"]},
+os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["Hostname:port","Hostname:port",'Hostname:port',"Hostname:port"]},
  'task': {'type': 'worker', 'index':int(sys.argv[1])}})
 
 strategy = tf.distribute.MultiWorkerMirroredStrategy(cluster_resolver=tf.distribute.cluster_resolver.TFConfigClusterResolver())
@@ -93,7 +93,7 @@ def build_and_compile_cnn_model():
 with strategy.scope():
   # Model building/compiling need to be within `strategy.scope()`.
 	multi_worker_model = build_and_compile_cnn_model()
-print('Iniciando a primeira epoca:')
+
 
 
 # Keras' `model.fit()` trains the model with specified number of epochs and
