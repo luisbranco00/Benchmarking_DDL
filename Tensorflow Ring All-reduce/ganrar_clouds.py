@@ -146,7 +146,7 @@ def main():
     args = parser.parse_args()
 
     logging.getLogger('tensorflow').setLevel(logging.DEBUG)
-    os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["cloud98:8050","cloud99:8052","cloud103:8053","cloud104:8053"]},
+    os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["Hostname:port","Hostname:port","Hostname:port","Hostname:port"]},
      'task': {'type': 'worker', 'index': args.index}})
     
     strategy = tf.distribute.MultiWorkerMirroredStrategy(cluster_resolver=tf.distribute.cluster_resolver.TFConfigClusterResolver())
