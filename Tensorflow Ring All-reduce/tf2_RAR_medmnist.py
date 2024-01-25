@@ -8,7 +8,7 @@ import sys
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.DEBUG)
 
-os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["cloud98:8050","cloud99:8052",'cloud103:8000',"cloud104:8000"]},
+os.environ['TF_CONFIG'] = json.dumps({ 'cluster': { 'worker': ["Hostname:port","Hostname:port",'Hostname:port',"Hostname:port"]},
  'task': {'type': 'worker', 'index':int(sys.argv[1])}})
 
 strategy = tf.distribute.MultiWorkerMirroredStrategy(cluster_resolver=tf.distribute.cluster_resolver.TFConfigClusterResolver())
